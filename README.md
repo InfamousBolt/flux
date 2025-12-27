@@ -261,44 +261,37 @@ export default {
 };
 ```
 
-### Chatbot with Tools
+### Chatbot with Memory
 
-An advanced agent with custom tools (calculator and time):
+An advanced agent with memory):
 
 ```typescript
 // agent.ts
+import "dotenv/config";
 import { ChatOpenAI } from "@langchain/openai";
-import { tool } from "@langchain/core/tools";
-import { createReactAgent } from "@langchain/langgraph/prebuilt";
-import { z } from "zod";
-
-const calculator = tool(
-  async ({ expression }: { expression: string }) => {
-    return String(eval(expression));
-  },
-  {
-    name: "calculator",
-    description: "Evaluate a math expression",
-    schema: z.object({ expression: z.string() }),
-  }
-);
-
-const getTime = tool(
-  async () => new Date().toLocaleTimeString(),
-  {
-    name: "get_time",
-    description: "Get the current time",
-    schema: z.object({}),
-  }
-);
+import { HumanMessage, AIMessage, SystemMessage } from "@langchain/core/messages";
 
 const llm = new ChatOpenAI({ modelName: "gpt-4o-mini" });
-const agent = createReactAgent({ llm, tools: [calculator, getTime] });
+const history: Array<HumanMessage | AIMessage> = [];
 
 export default {
   async invoke({ message }: { message: string }) {
-    const result = await agent.invoke({ messages: [{ role: "user", content: message }] });
-    return result.messages[result.messages.length - 1].content as string;
+    history.push(new HumanMessage(message));
+    
+    const response = await llm.invoke([
+      new SystemMessage("You are a helpful assistant. Be concise."),
+      ...history,
+    ]);
+    
+    const reply = response.content as string;
+    history.push(new AIMessage(reply));
+    
+    // Keep last 20 messages to avoid token limits
+    if (history.length > 20) {
+      history.splice(0, 2);
+    }
+    
+    return reply;
   }
 };
 ```
