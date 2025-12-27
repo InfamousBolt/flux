@@ -1,29 +1,17 @@
 <div align="center">
-  <img src="./assets/banner.png" alt="Flux Banner" width="100%">
-  
-  <h1>@photon-ai/flux</h1>
-  
-  <p><strong>Deploy your LangChain agent to iMessage in one line</strong></p>
-  
-  <p>
-    <a href="https://www.npmjs.com/package/@photon-ai/flux">
-      <img src="https://img.shields.io/npm/v/@photon-ai/flux.svg" alt="npm version">
-    </a>
-    <a href="https://www.typescriptlang.org/">
-      <img src="https://img.shields.io/badge/TypeScript-5.3-blue.svg" alt="TypeScript">
-    </a>
-    <a href="./LICENSE">
-      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
-    </a>
-    <a href="https://discord.gg/bZd4CMd2H5">
-      <img src="https://img.shields.io/badge/Discord-Join-5865F2.svg?logo=discord&logoColor=white" alt="Discord">
-    </a>
-  </p>
-  
-  <p>Flux is an open-source CLI tool that lets developers build and deploy LangChain agents that connect to iMessage at no cost and in under 5 seconds.</p>
+
+# @photon-ai/flux
+
+> Deploy your LangChain agent to iMessage in one line
+
 </div>
 
-<br />
+[![npm version](https://img.shields.io/npm/v/@photon-ai/flux.svg)](https://www.npmjs.com/package/@photon-ai/flux)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg?logo=discord&logoColor=white)](https://discord.gg/bZd4CMd2H5)
+
+Flux is an open-sourced CLI tool that lets developers build and deploy LangChain agents that connect to iMessage at no cost and under 5 seconds. 
 
 ## ✨ Features 
 
