@@ -226,44 +226,36 @@ Authentication is based on iMessage to ensure secure and simple access:
 
 ## 💡 Examples
 
-### Echo Bot (No LLM)
+### Weather Agent
 
-A simple echo agent that repeats your messages:
-
-```typescript
-// agent.ts
-export default {
-  async invoke({ message }: { message: string }) {
-    return `You said: ${message}`;
-  }
-};
-```
-
-### ChatGPT Bot
-
-A conversational AI agent powered by OpenAI:
+An agent with a weather tool (returns mock data). 
 
 ```typescript
-// agent.ts
-import { ChatOpenAI } from "@langchain/openai";
-import { SystemMessage, HumanMessage } from "@langchain/core/messages";
+import * as z from "zod";
+import { createAgent, tool } from "langchain";
 
-const llm = new ChatOpenAI({ modelName: "gpt-4o-mini" });
+const getWeather = tool(
+  ({ city }) => `It's always sunny in ${city}!`,
+  {
+    name: "get_weather",
+    description: "Get the weather for a given city",
+    schema: z.object({
+      city: z.string(),
+    }),
+  },
+);
 
-export default {
-  async invoke({ message }: { message: string }) {
-    const response = await llm.invoke([
-      new SystemMessage("You are a helpful assistant. Be concise."),
-      new HumanMessage(message),
-    ]);
-    return response.content as string;
-  }
-};
+const agent = createAgent({
+  model: "claude-sonnet-4-5-20250929",
+  tools: [getWeather],
+});
+
+export default agent
 ```
 
 ### Chatbot with Memory
 
-An advanced agent with memory):
+An advanced agent with memory:
 
 ```typescript
 // agent.ts
