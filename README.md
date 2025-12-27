@@ -2,7 +2,7 @@
 
 # @photon-ai/flux
 
-> A new way to build and deploy your iMessage agents at the speed of light
+> Deploy your LangChain agent to iMessage in one line
 
 </div>
 
