@@ -1,7 +1,5 @@
 <div align="center">
 
-![Banner](./assets/banner.png)
-
 # @photon-ai/flux
 
 > A new way to build and deploy your iMessage agents at the speed of light
