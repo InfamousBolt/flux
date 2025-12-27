@@ -2,7 +2,7 @@
 
 # @photon-ai/flux
 
-> Deploy your LangChain agent to iMessage in one line
+> An open-source CLI for deploying LangChain agents to iMessage in seconds
 
 </div>
 
