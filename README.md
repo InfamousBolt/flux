@@ -22,8 +22,6 @@ Flux is an open-sourced CLI tool that lets developers build and deploy LangChain
 - 🔐 **Phone Number Authentication** — Log in with just your phone number and iMessage
 - ✅ **Agent Validation** — Automatically validate your LangChain agent in the CLI
 
-<br />
-
 ## 🚀 Quick Start
 
 
@@ -47,8 +45,6 @@ npx @photon-ai/flux run --local
 npx @photon-ai/flux run --prod
 ```
 
-<br />
-
 ## 📦 Installation
 
 ### Recommended: Global Installation
@@ -71,14 +67,17 @@ flux run --prod
 
 ### Alternative: Use npx (No Installation Required)
 
-You can use Flux without installing it by using `npx`:
+You can use Flux without installing it by using `npx` or `bunx`:
 
 ```bash
 npx @photon-ai/flux login
 npx @photon-ai/flux run --local
+// or
+bunx @photon-ai/flux login
+bunx @photon-ai/flux run --local
 ```
 
-> **Note:** When using `npx`, there's no need to install the package first. `npx` will download and execute it automatically.
+> **Note:** When using `npx` or `bunx`, there's no need to install the package first. `npx` or `bunx` will download and execute it automatically.
 
 ### Local Installation (For Development)
 
@@ -89,8 +88,6 @@ npm install @photon-ai/flux
 # or
 bun add @photon-ai/flux
 ```
-
-<br />
 
 ## 📖 Usage Guide
 
@@ -206,8 +203,6 @@ npx @photon-ai/flux run --prod
 
 Now text **`+16286298650`** from your phone to interact with your agent!
 
-<br />
-
 ## 🛠️ CLI Commands
 
 | Command | Description |
@@ -220,8 +215,6 @@ Now text **`+16286298650`** from your phone to interact with your agent!
 | `flux run --local` | Start development server (local testing mode) |
 | `flux run --prod` | Start with live iMessage bridge |
 
-<br />
-
 ## 🔐 Authentication
 
 Authentication is based on iMessage to ensure secure and simple access:
@@ -230,8 +223,6 @@ Authentication is based on iMessage to ensure secure and simple access:
 2. **Phone Verification**: You send the verification code to the Flux number (`+16286298650`) via iMessage to prove phone ownership
 3. **Token Issuance**: Once verified, the server issues an authentication token
 4. **Persistent Login**: Credentials (token, phone, timestamp) are saved to `credentials.json`, so you only need to log in once
-
-<br />
 
 ## 💡 Examples
 
@@ -312,8 +303,6 @@ export default {
 };
 ```
 
-<br />
-
 ## 🤔 Why Flux?
 
 Connecting agents to messaging platforms traditionally involves complex processes like setting up servers, configuring webhooks, and dealing with platform APIs. Most solutions rely on SMS or WhatsApp, which can be unintuitive for many users.
@@ -326,8 +315,6 @@ Connecting agents to messaging platforms traditionally involves complex processe
 - 🌐 **Open source** — Fully community-driven and transparent
 - 💰 **Free to use** — No subscription fees or hidden costs
 
-<br />
-
 ## 👤 Single-User Design
 
 **Important:** Flux is designed for personal use and development. When you deploy an agent with Flux, **only your registered phone number** can interact with it via iMessage. This means:
@@ -338,7 +325,7 @@ Connecting agents to messaging platforms traditionally involves complex processe
 - ❌ Not designed for multi-user conversations
 - ❌ No enterprise-level user management
 
-### 🚀 Need Multi-User Support?
+### 🚀 Need Enterprise Support?
 
 For **enterprise-level iMessage agents** with advanced features, consider our [Advanced iMessage Kit](https://github.com/photon-hq/advanced-imessage-kit):
 
@@ -350,15 +337,11 @@ For **enterprise-level iMessage agents** with advanced features, consider our [A
 
 [**Explore Advanced iMessage Kit →**](https://github.com/photon-hq/advanced-imessage-kit)
 
-<br />
-
 ## ⚙️ Requirements
 
 - **Node.js** 18+ or **Bun** (for the CLI)
 - **Python** 3.9+ (for the agent, if using Python-based LangChain)
 - **LLM API Keys** (e.g., OpenAI API key for GPT-powered agents)
-
-<br />
 
 ## 🤝 Contributing
 
@@ -369,15 +352,11 @@ We welcome contributions! Flux is fully open source and community-driven. Feel f
 - 🔧 Submit pull requests
 - ⭐ Star the repository
 
-<br />
-
 ## 💬 Support
 
 - **Discord**: Join our community at [discord.gg/bZd4CMd2H5](https://discord.gg/bZd4CMd2H5)
 - **Issues**: Report problems on [GitHub Issues](https://github.com/photon-hq/flux/issues)
 - **Documentation**: Check out this README for comprehensive guides
-
-<br />
 
 ## 📄 License
 
