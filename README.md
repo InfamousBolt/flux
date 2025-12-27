@@ -1,77 +1,116 @@
 <div align="center">
-
-# @photon-ai/flux
-
-> Deploy your LangChain agent to iMessage in one line
-
+  <img src="./assets/banner.png" alt="Flux Banner" width="100%">
+  
+  <h1>@photon-ai/flux</h1>
+  
+  <p><strong>Deploy your LangChain agent to iMessage in one line</strong></p>
+  
+  <p>
+    <a href="https://www.npmjs.com/package/@photon-ai/flux">
+      <img src="https://img.shields.io/npm/v/@photon-ai/flux.svg" alt="npm version">
+    </a>
+    <a href="https://www.typescriptlang.org/">
+      <img src="https://img.shields.io/badge/TypeScript-5.3-blue.svg" alt="TypeScript">
+    </a>
+    <a href="./LICENSE">
+      <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+    </a>
+    <a href="https://discord.gg/bZd4CMd2H5">
+      <img src="https://img.shields.io/badge/Discord-Join-5865F2.svg?logo=discord&logoColor=white" alt="Discord">
+    </a>
+  </p>
+  
+  <p>Flux is an open-source CLI tool that lets developers build and deploy LangChain agents that connect to iMessage at no cost and in under 5 seconds.</p>
 </div>
 
-[![npm version](https://img.shields.io/npm/v/@photon-ai/flux.svg)](https://www.npmjs.com/package/@photon-ai/flux)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2.svg?logo=discord&logoColor=white)](https://discord.gg/bZd4CMd2H5)
+<br />
 
-Flux is an open-sourced CLI tool that lets developers build and deploy LangChain agents that connect to iMessage at no cost and under 5 seconds. 
+## ✨ Features 
 
-<!-- --- -->
 
-## Features
+- 🚀 **Deploy with a single command** — Export a LangChain agent and deploy it to iMessage with one command
+- 📱 **Text your agent from your phone** — Send an iMessage to the Flux number and get responses from your running agent
+- 🧪 **Testing mode** — Test your agent through your terminal before connecting to the iMessage bridge
+- 🔐 **Phone Number Authentication** — Log in with just your phone number and iMessage
+- ✅ **Agent Validation** — Automatically validate your LangChain agent in the CLI
 
-- **Deploy with a single command**: Export a LangChain agent and deploy it to iMessage with a single command. 
-- **Text your agent from your phone**: Send an iMessage to the Flux number and get responses from your running agent. 
-- **Testing mode**: Test your agent through your terminal before connecting to the iMessage brigde. 
-- **Phone Number Authentication**: Log in with just your phone number and iMessage. 
-- **Agent Validation**: Automatically validate your LangChain agent in the CLI. 
+<br />
 
-<!-- --- -->
+## 🚀 Quick Start
 
-## Installation
 
-### 
+Get started with Flux in seconds:
+
+```bash
+# No installation needed - use npx directly
+npx @photon-ai/flux login
+
+# Create your agent file
+echo 'export default {
+  async invoke({ message }: { message: string }) {
+    return `You said: ${message}`;
+  }
+};' > agent.ts
+
+# Test locally
+npx @photon-ai/flux run --local
+
+# Deploy to production
+npx @photon-ai/flux run --prod
 ```
+
+<br />
+
+## 📦 Installation
+
+### Recommended: Global Installation
+
+For the best experience, install Flux globally:
+
+```bash
+npm install -g @photon-ai/flux
+# or
+bun add -g @photon-ai/flux
+```
+
+Then run commands directly:
+
+```bash
+flux login
+flux run --local
+flux run --prod
+```
+
+### Alternative: Use npx (No Installation Required)
+
+You can use Flux without installing it by using `npx`:
+
+```bash
+npx @photon-ai/flux login
+npx @photon-ai/flux run --local
+```
+
+> **Note:** When using `npx`, there's no need to install the package first. `npx` will download and execute it automatically.
+
+### Local Installation (For Development)
+
+If you're integrating Flux into a project:
+
+```bash
 npm install @photon-ai/flux
-#or
+# or
 bun add @photon-ai/flux
 ```
 
-<!-- --- -->
+<br />
 
-## CLI Commands
+## 📖 Usage Guide
 
-| Command | Description |
-|---------|-------------|
-| `npx @photon-ai/flux` | Show help |
-| `npx @photon-ai/flux whoami` | Check account |
-| `npx @photon-ai/flux login` | Login and signup|
-| `npx @photon-ai/flux logout` | Logout |
-| `npx @photon-ai/flux run --local` | Start the development server (local mode) |
-| `npx @photon-ai/flux run --prod` | Start with live iMessage bridge |
-| `npx @photon-ai/flux validate` | Check your code for errors |
+### Step 1: Create Your LangChain Agent
 
-<!-- --- -->
+Create an `agent.ts` file with your LangChain agent. Make sure to have `export default agent`. Here's a simple example:
 
-## Flux Number
-
-Message `+16286298650` with you phone number to text the LangChain agent that you built. 
-
-<!-- --- -->
-
-## Log in
-
-Authentication is based on iMessage: 
-- The user (client) sends a code to the Flux number to prove phone ownership. 
-- The server generates a UUID per login attempt. It then waits for the iMessage text from the client with the UUID. Once verified, it will issue a token. 
-- Credentials (token, phone, timestamp) are saved to credentials.json. This way, the user only has to log in once. 
-
-<!-- --- -->
-
-## Usage 
-
-### Step 1: Create LangChain Agent
-
-Create an `agent.ts` file with your LangChain agent. Make sure to have `export default agent`. Below is one simple example:
-
-```
+```typescript
 // agent.ts
 export default {
   async invoke({ message }: { message: string }) {
@@ -80,13 +119,19 @@ export default {
 };
 ```
 
-### Step 2: Login
+### Step 2: Authenticate with iMessage
 
-Authenticate with your phone number and iMessage: 
+Authenticate with your phone number and iMessage:
+
+```bash
+flux login
+# or
+npx @photon-ai/flux login
+```
+
+**Example session:**
 
 ```
-npx @photon-ai/flux login
-
 Enter your phone number (e.g. +15551234567): +1234567890
 [FLUX] Requesting verification code...
 [FLUX] Verification code: d33gwu
@@ -96,40 +141,52 @@ Enter your phone number (e.g. +15551234567): +1234567890
 [FLUX] Successfully logged in as +1234567890
 ```
 
-If already logged in: 
+If already logged in:
 
 ```
-npx @photon-ai/flux login
-
 [FLUX] Already logged in as +1234567890
 ```
 
-Log out: 
+To log out:
+
+```bash
+flux logout
+```
 
 ```
-npx @photon-ai/flux logout
-
 [FLUX] Logged out.
 ```
 
-### Step 3: Validate
+### Step 3: Validate Your Agent
 
-Validate that your agent works and exports correctly: 
+Validate that your agent works and exports correctly:
+
+```bash
+flux validate
+# or
+npx @photon-ai/flux validate
+```
+
+**Output:**
 
 ```
-npx @photon-ai/flux validate
-
 [FLUX] Validating agent.ts...
 [FLUX] Agent is valid!
 ```
 
-### Step 4: Testing Mode
+### Step 4: Test Locally (Development Mode)
 
-Test your agent through your terminal (no iMessage connection): 
+Test your agent through your terminal (no iMessage connection):
+
+```bash
+flux run --local
+# or
+npx @photon-ai/flux run --local
+```
+
+**Interactive session:**
 
 ```
-npx @photon-ai/flux run --local
-
 [FLUX] Welcome to Flux! Your agent is loaded.
 [FLUX] Type a message to test it. Press Ctrl+C to exit.
 
@@ -138,43 +195,63 @@ You: Hello!
 Agent: Hello! How can I assist you today?
 ```
 
-### Step 5: Live Connection
+### Step 5: Deploy to Production (Live iMessage)
 
-Run your agent locally and connect it to the iMessage bridge. When you message the FLUX number with your phone number, you will receive the output of your LangChain agent: 
+Run your agent locally and connect it to the iMessage bridge. When you message the Flux number (`+16286298650`) from your registered phone, you'll receive responses from your LangChain agent:
+
+```bash
+flux run --prod
+# or
+npx @photon-ai/flux run --prod
+```
+
+**Output:**
 
 ```
-npx @photon-ai/flux run --prod
-
 [FLUX] Loading agent from agent.ts...
 [FLUX] Agent loaded successfully!
 [FLUX] Connected to server at fluxy.photon.codes:443
 [FLUX] Registered agent for +1234567890
 [FLUX] Agent running in production mode. Press Ctrl+C to stop.
 [FLUX] Messages to +1234567890 will be processed by your agent.
-
 ```
 
-<!-- --- -->
+Now text **`+16286298650`** from your phone to interact with your agent!
 
-## Why Flux
+<br />
 
-Right now, connecting agents to messaging platforms involves complex processes such as setting up servers, configuring webhooks, and dealing with platform APIs. Furthermore, most current options use SMS or WhatsApp, which is unintuitive for many users. 
+## 🛠️ CLI Commands
 
-Flux solves these problems in the following ways: 
+| Command | Description |
+|---------|-------------|
+| `flux` or `npx @photon-ai/flux` | Show help |
+| `flux whoami` | Check currently logged-in account |
+| `flux login` | Login and signup with phone number |
+| `flux logout` | Logout from current session |
+| `flux validate` | Check your agent code for errors |
+| `flux run --local` | Start development server (local testing mode) |
+| `flux run --prod` | Start with live iMessage bridge |
 
-- **Deploy in < 5 seconds**: Link your LangChain agent to iMessage with a single command.
-- **Fully iMessage native**: Direct iMessage integration, not SMS or WhatsApp. 
-- **Zero Infrastructure**: No servers to manage, webhooks to configure, or Apple Developer account needed. 
-- **Open source**: Fully community driven.
-- **Free to use**: No subscription fees.
+<br />
 
-<!-- --- -->
+## 🔐 Authentication
 
-## Examples
+Authentication is based on iMessage to ensure secure and simple access:
+
+1. **Code Generation**: The server generates a unique UUID for each login attempt
+2. **Phone Verification**: You send the verification code to the Flux number (`+16286298650`) via iMessage to prove phone ownership
+3. **Token Issuance**: Once verified, the server issues an authentication token
+4. **Persistent Login**: Credentials (token, phone, timestamp) are saved to `credentials.json`, so you only need to log in once
+
+<br />
+
+## 💡 Examples
 
 ### Echo Bot (No LLM)
 
-```
+A simple echo agent that repeats your messages:
+
+```typescript
 // agent.ts
 export default {
   async invoke({ message }: { message: string }) {
@@ -185,7 +262,9 @@ export default {
 
 ### ChatGPT Bot
 
-```
+A conversational AI agent powered by OpenAI:
+
+```typescript
 // agent.ts
 import { ChatOpenAI } from "@langchain/openai";
 import { SystemMessage, HumanMessage } from "@langchain/core/messages";
@@ -203,9 +282,11 @@ export default {
 };
 ```
 
-### Chatbot with tools
+### Chatbot with Tools
 
-```
+An advanced agent with custom tools (calculator and time):
+
+```typescript
 // agent.ts
 import { ChatOpenAI } from "@langchain/openai";
 import { tool } from "@langchain/core/tools";
@@ -243,17 +324,77 @@ export default {
 };
 ```
 
-<!-- --- -->
+<br />
 
-## Requirements
+## 🤔 Why Flux?
 
-- **Node.js** 18+ (for the CLI)
-- **Python** 3.9+ (for the agent)
-- **LLM Keys (e.g. OpenAI API key)**
+Connecting agents to messaging platforms traditionally involves complex processes like setting up servers, configuring webhooks, and dealing with platform APIs. Most solutions rely on SMS or WhatsApp, which can be unintuitive for many users.
 
-<!-- --- -->
+**Flux solves these problems:**
 
+- ⚡ **Deploy in < 5 seconds** — Link your LangChain agent to iMessage with a single command
+- 📱 **Fully iMessage native** — Direct iMessage integration, not SMS or WhatsApp
+- 🏗️ **Zero Infrastructure** — No servers to manage, webhooks to configure, or Apple Developer account needed
+- 🌐 **Open source** — Fully community-driven and transparent
+- 💰 **Free to use** — No subscription fees or hidden costs
 
-<div align="center">
+<br />
+
+## 👤 Single-User Design
+
+**Important:** Flux is designed for personal use and development. When you deploy an agent with Flux, **only your registered phone number** can interact with it via iMessage. This means:
+
+- ✅ Perfect for personal assistants and prototypes
+- ✅ Great for testing and development
+- ✅ Simple single-user experience
+- ❌ Not designed for multi-user conversations
+- ❌ No enterprise-level user management
+
+### 🚀 Need Multi-User Support?
+
+For **enterprise-level iMessage agents** with advanced features, consider our [Advanced iMessage Kit](https://github.com/photon-hq/advanced-imessage-kit):
+
+- 👥 **Multi-user support** — Handle thousands of users simultaneously
+- 📞 **Dedicated phone line** — Get your own iMessage number
+- 🏢 **Enterprise features** — Advanced conversation management and analytics
+- 💪 **Production-ready** — Enhanced stability and performance
+- 🛠️ **More functionalities** — Additional tools and integrations
+
+[**Explore Advanced iMessage Kit →**](https://github.com/photon-hq/advanced-imessage-kit)
+
+<br />
+
+## ⚙️ Requirements
+
+- **Node.js** 18+ or **Bun** (for the CLI)
+- **Python** 3.9+ (for the agent, if using Python-based LangChain)
+- **LLM API Keys** (e.g., OpenAI API key for GPT-powered agents)
+
+<br />
+
+## 🤝 Contributing
+
+We welcome contributions! Flux is fully open source and community-driven. Feel free to:
+
+- 🐛 [Report bugs](https://github.com/photon-hq/flux/issues)
+- 💡 [Request features](https://github.com/photon-hq/flux/issues)
+- 🔧 Submit pull requests
+- ⭐ Star the repository
+
+<br />
+
+## 💬 Support
+
+- **Discord**: Join our community at [discord.gg/bZd4CMd2H5](https://discord.gg/bZd4CMd2H5)
+- **Issues**: Report problems on [GitHub Issues](https://github.com/photon-hq/flux/issues)
+- **Documentation**: Check out this README for comprehensive guides
+
+<br />
+
+## 📄 License
+
+MIT License - see the [LICENSE](./LICENSE) file for details.
+
+<br /><div align="center">
   <sub>Built with ⚡ by <a href="https://photon.codes">Photon</a></sub>
 </div>
