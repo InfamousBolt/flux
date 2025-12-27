@@ -13,16 +13,16 @@
 
 Flux is an open-sourced CLI tool that lets developers build and deploy LangChain agents that connect to iMessage at no cost and under 5 seconds. 
 
-## ✨ Features 
+## Features 
 
 
-- 🚀 **Deploy with a single command** — Export a LangChain agent and deploy it to iMessage with one command
-- 📱 **Text your agent from your phone** — Send an iMessage to the Flux number and get responses from your running agent
-- 🧪 **Testing mode** — Test your agent through your terminal before connecting to the iMessage bridge
-- 🔐 **Phone Number Authentication** — Log in with just your phone number and iMessage
-- ✅ **Agent Validation** — Automatically validate your LangChain agent in the CLI
+- **Deploy with a single command**: Export a LangChain agent and deploy it to iMessage with one command
+- **Text your agent from your phone**: Send an iMessage to the Flux number and get responses from your running agent
+- **Testing mode**: Test your agent through your terminal before connecting to the iMessage bridge
+- **Phone Number Authentication**: Log in with just your phone number and iMessage
+- **Agent Validation**: Automatically validate your LangChain agent in the CLI
 
-## 🚀 Quick Start
+## Quick Start
 
 
 Get started with Flux in seconds:
@@ -303,17 +303,17 @@ export default {
 };
 ```
 
-## 🤔 Why Flux?
+##  Why Flux?
 
 Connecting agents to messaging platforms traditionally involves complex processes like setting up servers, configuring webhooks, and dealing with platform APIs. Most solutions rely on SMS or WhatsApp, which can be unintuitive for many users.
 
 **Flux solves these problems:**
 
-- ⚡ **Deploy in < 5 seconds** — Link your LangChain agent to iMessage with a single command
-- 📱 **Fully iMessage native** — Direct iMessage integration, not SMS or WhatsApp
-- 🏗️ **Zero Infrastructure** — No servers to manage, webhooks to configure, or Apple Developer account needed
-- 🌐 **Open source** — Fully community-driven and transparent
-- 💰 **Free to use** — No subscription fees or hidden costs
+- **Deploy in < 5 seconds** — Link your LangChain agent to iMessage with a single command
+- **Fully iMessage native** — Direct iMessage integration, not SMS or WhatsApp
+- **Zero Infrastructure** — No servers to manage, webhooks to configure, or Apple Developer account needed
+- **Open source** — Fully community-driven and transparent
+- **Free to use** — No subscription fees or hidden costs
 
 ## 👤 Single-User Design
 
@@ -325,15 +325,15 @@ Connecting agents to messaging platforms traditionally involves complex processe
 - ❌ Not designed for multi-user conversations
 - ❌ No enterprise-level user management
 
-### 🚀 Need Enterprise Support?
+### Need Enterprise Support?
 
 For **enterprise-level iMessage agents** with advanced features, consider our [Advanced iMessage Kit](https://github.com/photon-hq/advanced-imessage-kit):
 
-- 👥 **Multi-user support** — Handle thousands of users simultaneously
-- 📞 **Dedicated phone line** — Get your own iMessage number
-- 🏢 **Enterprise features** — Advanced conversation management and analytics
-- 💪 **Production-ready** — Enhanced stability and performance
-- 🛠️ **More functionalities** — Additional tools and integrations
+- **Multi-user support** — Handle thousands of users simultaneously
+- **Dedicated phone line** — Get your own iMessage number
+- **Enterprise features** — Advanced conversation management and analytics
+- **Production-ready** — Enhanced stability and performance
+- **More functionalities** — Additional tools and integrations
 
 [**Explore Advanced iMessage Kit →**](https://github.com/photon-hq/advanced-imessage-kit)
 
