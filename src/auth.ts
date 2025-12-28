@@ -222,3 +222,54 @@ export function loadConfig(): { phoneNumber?: string } {
   const credentials = loadCredentials();
   return { phoneNumber: credentials.phone };
 }
+
+// Export server address for status checks
+export function getServerAddress(): string {
+  return GRPC_SERVER_ADDRESS;
+}
+
+export async function checkStatus(): Promise<{
+  loggedIn: boolean;
+  phone?: string;
+  tokenValid?: boolean;
+  serverReachable?: boolean;
+  authenticatedAt?: string;
+  serverAddress?: string;
+  error?: string;
+}> {
+  const credentials = loadCredentials();
+
+  // Not logged in
+  if (!credentials.token || !credentials.phone) {
+    return {
+      loggedIn: false,
+      serverReachable: undefined,
+      serverAddress: GRPC_SERVER_ADDRESS,
+    };
+  }
+
+  // Try to validate token with server
+  try {
+    const client = await createGrpcClientWithRetry();
+    const result = await client.FluxService.validateToken(credentials.token);
+
+    return {
+      loggedIn: true,
+      phone: result.phone || credentials.phone,
+      tokenValid: result.valid,
+      serverReachable: true,
+      authenticatedAt: credentials.authenticatedAt,
+      serverAddress: GRPC_SERVER_ADDRESS,
+    };
+  } catch (error: any) {
+    return {
+      loggedIn: true,
+      phone: credentials.phone,
+      tokenValid: false,
+      serverReachable: false,
+      authenticatedAt: credentials.authenticatedAt,
+      serverAddress: GRPC_SERVER_ADDRESS,
+      error: error.message,
+    };
+  }
+}
