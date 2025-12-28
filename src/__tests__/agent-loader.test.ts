@@ -237,11 +237,11 @@ describe("agent-loader", () => {
     });
 
     it("should handle workflow with invalid agent", async () => {
-      // Create an invalid agent (missing default export)
+      // Create an invalid agent (missing invoke method)
       const invalidContent = `
-        // This agent is invalid - no default export
-        export const agent = {
-          async invoke({ message }: { message: string }) {
+        export default {
+          // Missing invoke method - has 'run' instead
+          async run({ message }: { message: string }) {
             return message;
           }
         };
@@ -252,10 +252,10 @@ describe("agent-loader", () => {
       const foundPath = findAgentFile();
       expect(foundPath).not.toBeNull();
 
-      // Validate should fail (no default export)
+      // Validate should fail (no invoke method)
       const validation = await validateAgentFile(foundPath!);
       expect(validation.valid).toBe(false);
-      expect(validation.error).toContain("No default export found");
+      expect(validation.error).toContain("invoke");
     });
   });
 });
