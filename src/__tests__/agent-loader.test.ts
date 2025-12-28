@@ -237,17 +237,25 @@ describe("agent-loader", () => {
     });
 
     it("should handle workflow with invalid agent", async () => {
-      // Create an invalid agent
-      fs.writeFileSync(path.join(testDir, "agent.ts"), "export const broken = 'oops';");
+      // Create an invalid agent (missing default export)
+      const invalidContent = `
+        // This agent is invalid - no default export
+        export const agent = {
+          async invoke({ message }: { message: string }) {
+            return message;
+          }
+        };
+      `;
+      fs.writeFileSync(path.join(testDir, "agent.ts"), invalidContent);
 
       // Find the agent
       const foundPath = findAgentFile();
       expect(foundPath).not.toBeNull();
 
-      // Validate should fail
+      // Validate should fail (no default export)
       const validation = await validateAgentFile(foundPath!);
       expect(validation.valid).toBe(false);
-      expect(validation.error).toBeDefined();
+      expect(validation.error).toContain("No default export found");
     });
   });
 });
